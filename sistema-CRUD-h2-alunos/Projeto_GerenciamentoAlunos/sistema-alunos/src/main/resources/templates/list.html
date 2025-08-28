@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Alunos</title>
+</head>
+
+<body>
+    <h1>Lista de Alunos</h1>
+
+    <div th:if="${message}">
+        <p th:text="${message}" style="color:green;"></p>
+    </div>
+    <div th:if="${error}">
+        <p th:text="${error}" style="color:red;"></p>
+    </div>
+
+    <a th:href="@{/alunos/new}">Novo Aluno</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Ano</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="aluno : ${alunos}">
+                <td th:text="${aluno.id}"></td>
+                <td th:text="${aluno.name}"></td>
+                <td th:text="${aluno.age}"></td>
+                <td th:text="${aluno.schoolYear}"></td>
+                <td>
+                    <a th:href="@{'/alunos/edit/' + ${aluno.id}}">Editar</a> |
+                    <a th:href="@{'/alunos/delete/' + ${aluno.id}}"
+                        onclick="return confirm('Deseja realmente excluir este aluno?');">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
