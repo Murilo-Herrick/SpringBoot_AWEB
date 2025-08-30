@@ -7,17 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.aweb.sistema_alunos.model.Aluno;
 import br.com.aweb.sistema_alunos.service.AlunoService;
 import jakarta.validation.Valid;
-
-
-
-
-
 
 @Controller
 @RequestMapping("/alunos")
@@ -30,6 +26,14 @@ public class AlunoController {
     public String list(Model model) {
         model.addAttribute("alunos", alunoService.listAll());
         return "list";
+    }
+
+    @GetMapping("/search")
+    public String findByName(@RequestAttribute(required = false) String name ,Model model){
+        if (name != null && !name.isBlank()){
+            model.addAttribute("alunos", alunoService.findByName(name));
+        }
+        return "search";
     }
 
     @GetMapping("/new")

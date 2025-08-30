@@ -27,12 +27,8 @@ public class AlunoService {
         throw new RuntimeException("Aluno não encontrado!");
     }
 
-    public Aluno findByName(String name){
-        Optional<Aluno> aluno = alunoRepository.findByName(name);
-        if(aluno.isPresent()){
-           return aluno.get(); 
-        }
-        throw new RuntimeException("Aluno não encontrado!");
+    public List<Aluno> findByName(String name){
+        return alunoRepository.findByName(name);
     }
 
     public void deleteById(Long id){

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.aweb.sistema_produto.model.Product;
@@ -25,6 +26,14 @@ public class productController {
     public String list(Model model) {
         model.addAttribute("products", productService.listAll());
         return "list";
+    }   
+
+    @GetMapping("/search")
+    public String findByName(@RequestParam(required = false) String name ,Model model, RedirectAttributes attributes){
+        if (name != null && !name.isBlank()){
+            model.addAttribute("products", productService.findByName(name));
+        }
+        return "search";
     }
 
     @GetMapping("/new")
