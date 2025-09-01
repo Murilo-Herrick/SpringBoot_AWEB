@@ -4,45 +4,54 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
-    <title>Produtos - Buscar por nome</title>
+    <title>Alunos - Buscar por nome</title>
   </head>
 
   <body>
     <div class="container">
-      <h1>Buscar produto por nome</h1>
+      <h1>Buscar aluno por nome</h1>
 
-      <form th:action="@{/products/search}" method="get" role="search">
-        <label for="name" class="muted">Nome do produto</label>
+      <form th:action="@{/alunos/search}" method="get" role="search">
+        <label for="name" class="muted">Nome do aluno</label>
         <input
           id="name"
           name="name"
           type="text"
-          placeholder="Ex.: Teclado"
+          placeholder="Ex.: Murilo"
           th:value="${param.name}"
         />
         <button type="submit">Buscar</button>
-        <a th:href="@{/products}" class="button">Voltar à lista</a>
+        <a th:href="@{/alunos}" class="button">Voltar à lista</a>
       </form>
 
-      <div th:if="${products != null}">
-        <p class="muted" th:if="${#lists.isEmpty(products)}">
-          Nenhum produto encontrado.
+      <div th:if="${param.name != null}" style="margin-top: 20px;">
+        <p class="muted" th:if="${#lists.isEmpty(alunos)}">
+          Nenhum aluno encontrado.
         </p>
 
-        <table th:if="${!#lists.isEmpty(products)}">
+        <table th:if="${!#lists.isEmpty(alunos)}">
           <thead>
             <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th>Idade</th>
+              <th>Ano Escolar</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
-            <tr th:each="prod : ${products}">
-              <td th:text="${prod.id}">1</td>
-              <td th:text="${prod.name}">Exemplo</td>
+            <tr th:each="aluno : ${alunos}">
+              <td th:text="${aluno.id}">1</td>
+              <td th:text="${aluno.name}">Exemplo</td>
+              <td th:text="${aluno.age}">Exemplo</td>
+              <td th:text="${aluno.schoolYear}">Exemplo</td>
               <td>
-                <a th:href="@{'/products/edit/' + ${prod.id}}">Editar</a>
+                <a th:href="@{'/alunos/edit/' + ${aluno.id}}">Editar</a>
+                <a
+                  th:href="@{'/alunos/delete/' + ${aluno.id}}"
+                  onclick="return confirm('Deseja realmente excluir este aluno?');"
+                  >Excluir</a
+                >
               </td>
             </tr>
           </tbody>

@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.aweb.sistema_alunos.model.Aluno;
@@ -29,8 +29,8 @@ public class AlunoController {
     }
 
     @GetMapping("/search")
-    public String findByName(@RequestAttribute(required = false) String name ,Model model){
-        if (name != null && !name.isBlank()){
+    public String findByName(@RequestParam(required = false) String name, Model model) {
+        if (name != null && !name.isBlank()) {
             model.addAttribute("alunos", alunoService.findByName(name));
         }
         return "search";

@@ -8,5 +8,5 @@ import br.com.aweb.sistema_alunos.model.Aluno;
 
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
-    public List<Aluno> findByName(String name);
+    public List<Aluno> findByNameContainingIgnoreCase(String name);
 }

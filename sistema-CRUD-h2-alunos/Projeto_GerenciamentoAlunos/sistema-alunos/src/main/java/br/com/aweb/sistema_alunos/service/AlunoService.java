@@ -28,7 +28,7 @@ public class AlunoService {
     }
 
     public List<Aluno> findByName(String name){
-        return alunoRepository.findByName(name);
+        return alunoRepository.findByNameContainingIgnoreCase(name);
     }
 
     public void deleteById(Long id){
