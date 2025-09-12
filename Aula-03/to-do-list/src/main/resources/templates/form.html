@@ -9,7 +9,8 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <title>To Do List - Nova Tarefa</title>
+    <title th:unless="${todo.id}">To Do List - Nova Tarefa</title>
+    <title th:if="${todo.id}">To Do List - Editar Tarefa</title>
   </head>
   <body>
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -19,7 +20,8 @@
     </nav>
 
     <main class="container mt-5">
-      <h1>Nova Tarefa</h1>
+      <h1 th:unless="${todo.id}">Nova Tarefa</h1>
+      <h1 th:if="${todo.id}">Editar Tarefa</h1>
 
       <form method="POST" th:object="${todo}">
         <div class="mb-3">

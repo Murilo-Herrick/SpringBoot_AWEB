@@ -31,7 +31,7 @@ import lombok.ToString;
 @ToString
 // @Data é um tudo em um (Setter, Getter, Equals, HashCode e ToString)
 // @Data
-public class ToDo {
+public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
