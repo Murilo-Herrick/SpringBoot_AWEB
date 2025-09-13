@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Garante que o mvnw tenha permissão de execução
-RUN chmod +x ./mvnw
+RUN chmod +x ./.mvnw
 
 # Build do projeto sem rodar testes
 RUN ./mvnw clean package -DskipTests
