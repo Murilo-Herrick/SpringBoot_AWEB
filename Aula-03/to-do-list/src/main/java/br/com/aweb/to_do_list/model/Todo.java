@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -46,11 +45,12 @@ public class Todo {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @NotNull
-    @FutureOrPresent
+    // @FutureOrPresent
     @DateTimeFormat(iso = ISO.DATE)
     @Column(nullable = false)
     private LocalDate deadline;
 
     @Column(nullable = true)
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate finishedAt;
 }
