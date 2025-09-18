@@ -1,6 +1,6 @@
 package br.com.aweb.sistema_manutencao.controller;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class ManutencaoController {
 
     @GetMapping
     public ModelAndView home() {
-        return new ModelAndView("list", Map.of("manutencoes", manutencaoService.findAll()));
+        return new ModelAndView("home", Map.of("manutencoes", manutencaoService.findAll()));
     }
 
     @GetMapping("/create")
@@ -70,7 +70,7 @@ public class ManutencaoController {
     public String finish(@PathVariable Long id) {
         var optionalManutencao = manutencaoService.findById(id);
         if (optionalManutencao.getFinishedAt() == null) {
-            optionalManutencao.setFinishedAt(LocalDate.now());
+            optionalManutencao.setFinishedAt(LocalDateTime.now());
             manutencaoService.createManutencao(optionalManutencao);
             return "redirect:/home";
         }

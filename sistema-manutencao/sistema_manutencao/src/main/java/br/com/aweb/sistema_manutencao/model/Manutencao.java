@@ -1,6 +1,5 @@
 package br.com.aweb.sistema_manutencao.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,9 +35,9 @@ public class Manutencao {
     @Column(nullable = false, length = 20)
     private String applicant;
     
-    @Size(min = 5, max = 250)
+    @Size(min = 5, max = 100)
     @NotBlank
-    @Column(nullable = false, length = 250)
+    @Column(nullable = false, length = 100)
     private String description;
 
     @Column(nullable = false)
@@ -46,5 +45,5 @@ public class Manutencao {
 
     @Column(nullable = true)
     @DateTimeFormat(iso = ISO.DATE)
-    private LocalDate finishedAt;
+    private LocalDateTime finishedAt;
 }
