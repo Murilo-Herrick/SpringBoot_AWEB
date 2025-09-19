@@ -1,17 +1,14 @@
 package br.com.aweb.sistema_manutencao.controller;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.aweb.sistema_manutencao.model.Manutencao;
@@ -67,14 +64,9 @@ public class ManutencaoController {
     }
 
     @PostMapping("/finish/{id}")
-    public String finish(@PathVariable Long id) {
-        var optionalManutencao = manutencaoService.findById(id);
-        if (optionalManutencao.getFinishedAt() == null) {
-            optionalManutencao.setFinishedAt(LocalDateTime.now());
-            manutencaoService.createManutencao(optionalManutencao);
-            return "redirect:/home";
-        }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    public String finish(@PathVariable Long id, Manutencao manutencao) {
+        manutencaoService.finishManutencao(manutencao, id);
+        return "redirect:/home";
     }
 
 }
