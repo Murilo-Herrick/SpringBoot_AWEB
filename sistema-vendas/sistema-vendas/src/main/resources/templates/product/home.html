@@ -40,16 +40,6 @@
             <td th:text="${product.price}"></td>
             <td th:text="${product.amount}"></td>
             <td>
-              <form
-                method="POST"
-                class="d-inline"
-                th:action="@{/products/finish/{id}(id=${product.id})}"
-              >
-                <button type="submit" class="btn btn-sm btn-primary">
-                  Concluir
-                </button>
-              </form>
-
               <a
                 th:href="@{/products/edit/{id}(id=${product.id})}"
                 class="btn btn-sm btn-secondary"

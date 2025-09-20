@@ -8,6 +8,11 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
   </head>
   <body>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/products}">Lista de Produtos</a>
+      </div>
+    </nav>
     <div class="container mt-5">
       <h2
         th:text="${product.id == null} ? 'Criar Produto' : 'Editar Produto'"
