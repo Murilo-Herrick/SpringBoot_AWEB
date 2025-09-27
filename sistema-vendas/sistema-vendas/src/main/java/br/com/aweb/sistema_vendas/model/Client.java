@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -40,7 +41,8 @@ public class Client {
     @Email
     private String email;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 11)
+    @Size(min = 11, max = 11, message = "Cpf deve ter 11 digitos!")
     @CPF
     private String cpf;
 
@@ -48,7 +50,7 @@ public class Client {
     @Column(nullable = true)
     private String Telephone;
 
-    @NotBlank
+    @NotBlank(message = "Rua é obrigatorio!")
     @Column(nullable = false)
     private String street;
 
@@ -60,20 +62,20 @@ public class Client {
     @Column(nullable = true)
     private String complement;
 
-    @NotBlank
+    @NotBlank(message = "Bairro é obrigatorio!")
     @Column(nullable = false)
     private String neighboorhood;
 
-    @NotBlank
+    @NotBlank(message = "Cidade é obrigatorio!")
     @Column(nullable = false)
     private String city;
 
-    @NotBlank
-    @Length(min = 2, max = 2)
+    @NotBlank(message = "UF é obrigatorio!")
+    @Size(min = 2, max = 2, message = "Digite uma UF valida!")
     @Column(nullable = false, length = 2)
     private String uf;
 
-    @NotBlank
+    @NotBlank(message = "CEP é obrigatorio!")
     @Column(nullable = false)
     private String zipCode;
 }
