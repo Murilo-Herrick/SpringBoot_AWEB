@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 -- Tabela de pedidos
-CREATE TABLE IF NOT EXISTS orders (
+CREATE TABLE IF NOT EXISTS order (
     id SERIAL PRIMARY KEY,
     client_id INTEGER NOT NULL,
     order_date TIMESTAMP NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     order_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
     amount INTEGER NOT NULL,
-    preco_unitario DECIMAL(10,2) NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
     CONSTRAINT fk_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
